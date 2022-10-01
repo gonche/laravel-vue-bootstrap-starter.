@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# include the functions and colors
+. $(dirname "$0")/functions/bash-functions
+. $(dirname "$0")/functions/output-factory
+
+# git add
+. $(dirname "$0")/functions/git-add
+gitAdd
+hasChanges=$?
+# exit if no changes for commit
+if [[ "$hasChanges" == "0" ]]; then
+    exit 1
+fi
+
+# run the factory that generates the output
+factory

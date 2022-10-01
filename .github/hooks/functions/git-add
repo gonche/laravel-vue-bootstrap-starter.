@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# check if there are changes in git status.
+function gitAdd() {
+    local hasChanges=0
+
+    makeTitle "GIT"
+    echo -e "Committing as $(git config user.name)"
+    gitStatus="$(git status)"
+    echo -e "$gitStatus"
+
+    if [[ "$gitStatus" != *"nothing to commit"* && "$gitStatus" != *"no changes added to commit"* ]]; then
+        #echo -e "$(git add .)"
+        hasChanges=1
+        return $hasChanges
+    fi
+
+    ##echo -e "$(git add .)"
+    return $hasChanges
+}
